@@ -4,5 +4,5 @@ class User < ApplicationRecord
 	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 	has_many :meeting_participants
-	has_many :meetings	     
+	has_many :meetings, :foreign_key => "scribe_id"
 end

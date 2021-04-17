@@ -1,0 +1,22 @@
+This is meeting # <%= @meeting.id %>
+
+
+<ul>
+	<li><%= @meeting.agenda %></li>
+	<li><%= @meeting.created_at.strftime("%d/%m/%Y") %></li>
+	<li><%= @meeting.scribe.name %></li>
+	<li><%= @meeting.scribe.email %></li>
+	<ul>
+		Participants:
+		<% @meeting.meeting_participants.each do |participant| %>
+			<li>
+				<%= participant.user.email %>
+			</li>
+		<% end %>
+	</ul>
+</ul>	
+
+<%= link_to 'Delete', @meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+<%= link_to "Index", meetings_path %>

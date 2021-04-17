@@ -1,0 +1,21 @@
+These are your meetings
+
+<%= link_to "New meeting", new_meeting_path %>
+
+<% @meetings.each do |meeting| %>
+	<ul>
+		<li><%= link_to meeting.agenda, meeting_path(meeting) %></li>
+		<li><%= meeting.created_at.strftime("%d/%m/%Y") %></li>
+		<li><%= meeting.scribe.name %></li>
+		<li><%= meeting.scribe.email %></li>
+		<ul>
+			Participants:
+			<% meeting.meeting_participants.each do |participant| %>
+				<li>
+					<%= participant.user.email %>
+				</li>
+			<% end %>
+		</ul>
+		<hr />
+	</ul>	
+<% end %>

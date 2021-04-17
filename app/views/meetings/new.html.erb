@@ -1,0 +1,14 @@
+<%= form_for @meeting do |form| %>
+
+    <%= form.text_field :agenda, placeholder: "Agenda" %>
+
+    <h2>Meeting Participants </h2>
+
+    <%= form.fields_for :meeting_participants do |participant| %>
+    	<%= render "participant_fields", form: participant %>
+	<% end %>	
+	<div class="links">
+		<%= link_to_add_association 'add participant', form, :meeting_participants, partial: 'participant_fields'  %>
+	</div>
+    <%= form.submit "Create Meeting" %>
+<% end %>
