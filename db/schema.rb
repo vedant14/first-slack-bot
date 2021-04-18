@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_172601) do
+ActiveRecord::Schema.define(version: 2021_04_17_180348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_items", force: :cascade do |t|
+    t.string "item"
+    t.bigint "assignee_id"
+    t.bigint "meeting_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignee_id"], name: "index_action_items_on_assignee_id"
+    t.index ["meeting_id"], name: "index_action_items_on_meeting_id"
+  end
+
+  create_table "discussions", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "meeting_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meeting_id"], name: "index_discussions_on_meeting_id"
+    t.index ["user_id"], name: "index_discussions_on_user_id"
+  end
 
   create_table "meeting_participants", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -47,6 +67,10 @@ ActiveRecord::Schema.define(version: 2021_04_16_172601) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "action_items", "meetings"
+  add_foreign_key "action_items", "users", column: "assignee_id"
+  add_foreign_key "discussions", "meetings"
+  add_foreign_key "discussions", "users"
   add_foreign_key "meeting_participants", "meetings"
   add_foreign_key "meeting_participants", "users"
   add_foreign_key "meetings", "users", column: "scribe_id"

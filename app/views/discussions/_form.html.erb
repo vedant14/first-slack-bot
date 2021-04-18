@@ -1,0 +1,9 @@
+<%= form_for [meeting, Discussion.new] do |form| %>
+	<div>
+		<%= form.text_area :content, placeholder: "What was discussed in the meeting?", rows: 10 %>	
+	</div>
+	<div>
+	    <%= form.submit "Create Meeting" %>
+	</div>
+<% end %>
+

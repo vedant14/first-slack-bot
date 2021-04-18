@@ -7,12 +7,23 @@ This is meeting # <%= @meeting.id %>
 	<li><%= @meeting.scribe.name %></li>
 	<li><%= @meeting.scribe.email %></li>
 	<ul>
-		Participants:
+		Participants: <%= @meeting.meeting_participants.count %>
 		<% @meeting.meeting_participants.each do |participant| %>
 			<li>
 				<%= participant.user.email %>
 			</li>
 		<% end %>
+	</ul>
+	<ul>
+	Discussions: <%= @meeting.discussions.count %>
+
+		<% @meeting.discussions.each do |discussion| %>
+			<li>
+				<%= discussion.content %> by
+				<%= discussion.user.email %>
+			</li>
+		<% end %>
+		<%= render partial: "discussions/form", locals: {meeting: @meeting} %>
 	</ul>
 </ul>	
 

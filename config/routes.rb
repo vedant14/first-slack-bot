@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resources :meetings
+	resources :meetings do 	
+		resources :discussions, module: :meetings
+	end
 end
