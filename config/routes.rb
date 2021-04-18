@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 
 	resources :meetings do 	
 		resources :discussions, module: :meetings
+		resources :action_items, module: :meetings
 	end
 end

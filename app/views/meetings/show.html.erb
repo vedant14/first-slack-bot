@@ -26,8 +26,18 @@ This is meeting # <%= @meeting.id %>
 		<%= render partial: "discussions/form", locals: {meeting: @meeting} %>
 	</ul>
 </ul>	
+<hr />
+<h2> Action Items </h2>
+<% @meeting.action_items.each do |action_item| %>
+	<li>
+		<%= action_item.item %> by
+		<%= action_item.assignee.email %>
+	</li>
+<% end %>
+<%= render partial: "action_items/form", locals: {meeting: @meeting} %>
+
+
+
 
 <%= link_to 'Delete', @meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
-
-
 <%= link_to "Index", meetings_path %>

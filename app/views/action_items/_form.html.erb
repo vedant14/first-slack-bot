@@ -1,0 +1,10 @@
+<%= form_for [meeting, ActionItem.new] do |form| %>
+	<div>
+		<%= form.text_field :item, placeholder: "What action needs to be taken?" %>	
+		<%= form.number_field :assignee_id, placeholder: "Who is to be assigned?" %>
+	</div>
+	<div>
+	    <%= form.submit "Add Action Item" %>
+	</div>
+<% end %>
+
