@@ -1,4 +1,4 @@
-This is meeting # <%= @meeting.id %>
+This is meeting # <%= @meeting.id %><%= link_to "Index", meetings_path %>
 
 
 <ul>
@@ -40,4 +40,3 @@ This is meeting # <%= @meeting.id %>
 
 
 <%= link_to 'Delete', @meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to "Index", meetings_path %>

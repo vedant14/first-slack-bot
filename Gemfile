@@ -57,4 +57,5 @@ gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'jquery-rails', '~> 4.4'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 gem 'cocoon', '~> 1.2', '>= 1.2.15'
-
+# gem 'slack-ruby-bot-server-events', '~> 0.3.1'
+gem 'slack-ruby-bot', '~> 0.16.1'

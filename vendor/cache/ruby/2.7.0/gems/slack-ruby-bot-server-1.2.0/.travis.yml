@@ -1,0 +1,33 @@
+language: ruby
+
+cache: bundler
+
+matrix:
+  include:
+    - rvm: 2.6.2
+      script:
+        - bundle exec danger
+      services:
+        - xvfb
+    - rvm: 2.6.2
+      env: DATABASE_ADAPTER=activerecord
+      services:
+        - xvfb
+        - postgresql
+    - rvm: 2.6.2
+      env: DATABASE_ADAPTER=mongoid
+      services:
+        - xvfb
+        - mongodb
+
+addons:
+  firefox: 54.0
+
+before_install:
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver-v0.18.0-linux64.tar.gz -C geckodriver
+  - export PATH=$PATH:$PWD/geckodriver
+
+script:
+  - bundle exec rake

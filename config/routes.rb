@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 		end
 	end
 
+	post "/slack/index", to: "slack/commands#index"
+	post "/slack/create", to: "slack/commands#create"
+	post "/slack/post", to: "slack/commands#post"
+	post "/slack/event", to: "slack/commands#event"
+
 	resources :meetings do 	
 		resources :discussions, module: :meetings
 		resources :action_items, module: :meetings
